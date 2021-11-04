@@ -1,6 +1,6 @@
 import { Typography, Box, Container, Grid } from '@mui/material';
 import React from 'react';
-import CardComponent from '../../../CardComponent/CardComponent';
+import Service from './Service/Service';
 const services = [
     {
         id: 1,
@@ -36,9 +36,12 @@ const Services = () => {
             <Box sx={{ mt: 14 }}>
                 <Grid container spacing={2}>
                     {
-                        services.map(service => <CardComponent
+                        services.map(service => <Service
                             key={service.id}
-                            service={service} />)
+                            title={service.title}
+                            img={service.img}
+                            body={service.shortDesc}
+                        />)
                     }
 
 

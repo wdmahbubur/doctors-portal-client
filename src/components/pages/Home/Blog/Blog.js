@@ -1,12 +1,6 @@
-import { Container, Box, Typography, Grid, Card, CardContent, CardHeader, Avatar, CardActions, Button } from '@mui/material';
+import { Container, Box, Typography, Grid, Card, CardContent, CardHeader, Avatar } from '@mui/material';
 import React from 'react';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
-const firstCardStyle = {
-    backgroundImage: 'linear-gradient(to right, #19D39A, #0FCFEC)'
-
-
-}
 const Blog = () => {
     return (
         <Container sx={{ py: 5 }}>
