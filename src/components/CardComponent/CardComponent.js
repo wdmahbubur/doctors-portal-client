@@ -20,10 +20,10 @@ const CardComponent = ({ service }) => {
                     sx={{ width: 'auto', mx: 'auto' }}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div" sx={{ color: '#565E69' }}>
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" sx={{ color: '#B4B4B4' }}>
                         {shortDesc}
                     </Typography>
                 </CardContent>

@@ -15,9 +15,6 @@ const Header = () => {
         window.addEventListener('scroll', handleScroll, { passive: true });
         window.addEventListener("resize", handleResize);
     }, [])
-
-
-    console.log(screenWidth)
     return (
         <div>
             <Navbar2 top={
