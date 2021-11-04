@@ -20,7 +20,7 @@ const Navbar2 = ({ top }) => {
         setAnchorEl(null);
     };
     return (
-        <Box sx={{ flexGrow: 1, position: 'fixed', width: '100%', zIndex: 1023, marginTop: top || '0', transition: 'all .8s linear' }}>
+        <Box sx={{ flexGrow: 1, position: 'fixed', width: '100%', zIndex: 1023, marginTop: top || '0', transition: 'all .5s linear' }}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
