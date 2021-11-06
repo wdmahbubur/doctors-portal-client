@@ -10,7 +10,10 @@ import { NavLink } from 'react-router-dom';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import useAuth from '../../hooks/useAuth';
+
 const Navbar2 = ({ top }) => {
+    const { user, logout } = useAuth();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -75,11 +78,20 @@ const Navbar2 = ({ top }) => {
                             </Link>
                         </Typography>
 
-                        <Tooltip title="Account settings">
-                            <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-                                <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-                            </IconButton>
-                        </Tooltip>
+                        {
+                            user?.email ? <Tooltip title="Account settings">
+                                <IconButton onClick={handleClick} size="small" sx={{ ml: 2, color: '#fff' }}>
+                                    {user.displayName}
+                                    <Avatar sx={{ width: 32, height: 32, ml: 2 }}>M</Avatar>
+                                </IconButton>
+                            </Tooltip>
+                                :
+                                <Typography sx={{ mx: 3 }}>
+                                    <Link as={NavLink} to='/login' underline="none" sx={{ color: '#fff' }}>
+                                        Login
+                                    </Link>
+                                </Typography>
+                        }
                     </Box>
                     <Menu
                         anchorEl={anchorEl}
@@ -134,7 +146,7 @@ const Navbar2 = ({ top }) => {
                             </ListItemIcon>
                             Settings
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem onClick={logout}>
                             <ListItemIcon>
                                 <Logout fontSize="small" />
                             </ListItemIcon>

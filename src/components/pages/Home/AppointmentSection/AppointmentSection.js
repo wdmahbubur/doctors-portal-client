@@ -1,7 +1,7 @@
 import { Container, Box, Grid, Typography, Button } from '@mui/material';
 import React from 'react';
 
-const AppointmentSection = () => {
+const AppointmentSection = ({ getAppointment }) => {
     const appointmentStyle = {
         background: 'url(https://i.ibb.co/xJLHpZx/appointment-bg.png)',
         backgroundPosition: 'center',
@@ -28,8 +28,8 @@ const AppointmentSection = () => {
                             It is a long established fact that a reader will be distractedby the readable
                             content of a page when looking at its
                         </Typography>
-                        <Button variant="contained" sx={{ bgcolor: '#19D3AE', boxShadow: 'none', borderRadius: 0 }}>Learn More</Button>
-
+                        <Button variant="contained" sx={{ bgcolor: '#19D3AE', boxShadow: 'none', borderRadius: 0 }}
+                            onClick={getAppointment}>GET APPOINTMENT</Button>
                     </Grid>
                 </Grid>
             </Container>
