@@ -17,7 +17,10 @@ const AppointmentBanner = ({ date, setDate }) => {
                         <Typography variant="h3" sx={{ fontWeight: 600, color: '#3A4256' }}>
                             Appointment
                         </Typography>
-                        <Calender date={date} setDate={setDate}></Calender>
+                        <Box sx={{ mt: 5, mb: -30, width: 320, boxShadow: 2, borderRadius: 2 }}>
+                            <Calender date={date} setDate={setDate}></Calender>
+                        </Box>
+
                     </Grid>
 
                     <Grid item xs={12} md={7}>

@@ -6,6 +6,7 @@ import Login from './components/pages/Login/Login';
 import Register from './components/pages/Register/Register';
 import Context from './context/context';
 import RequireAuth from './components/PrivateRoute/PrivateRoute';
+import Dashboard from './components/pages/Dashboard/Dashboard';
 
 
 function App() {
@@ -18,6 +19,11 @@ function App() {
             <Route path="/appointment" element={
               <RequireAuth>
                 <Appointment />
+              </RequireAuth>
+            } />
+            <Route path="/dashboard" element={
+              <RequireAuth>
+                <Dashboard />
               </RequireAuth>
             } />
             <Route path="/login" element={<Login />} />

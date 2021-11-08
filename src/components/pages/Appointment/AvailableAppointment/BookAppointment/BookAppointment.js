@@ -26,7 +26,7 @@ const style = {
 const BookAppointment = ({ open, setOpen, handleClose, appointment, date }) => {
     const { title, time } = appointment;
     const { user } = useAuth();
-    const initialInfo = { name: user.displayName, email: user.email, number: '', title: title, time: time, date: date.toLocaleDateString() }
+    const initialInfo = { userId: user.uid, name: user.displayName, email: user.email, number: '', title: title, time: time, date: date.toLocaleDateString() }
 
     const [openMessage, setOpenMessage] = useState(true);
     const [status, setStatus] = useState(false);
