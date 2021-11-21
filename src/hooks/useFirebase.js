@@ -25,7 +25,6 @@ const useFirebase = () => {
                 })
             } else {
                 setUser({})
-                setError();
             }
             setLoading(false)
         });
@@ -93,9 +92,8 @@ const useFirebase = () => {
     }
 
     async function saveUser(uid, name, email) {
-        setError();
         const user = { uid, name, email }
-        await axios.put('http://localhost:5000/users', {
+        await axios.put('https://fathomless-lake-90403.herokuapp.com/users', {
             data: user
         }).then(response => setError())
             .catch(error => {
@@ -104,7 +102,7 @@ const useFirebase = () => {
     }
 
     async function findUser(user) {
-        await axios.get(`http://localhost:5000/users/${user.uid}`)
+        await axios.get(`https://fathomless-lake-90403.herokuapp.com/users/${user.uid}`)
             .then(res => {
                 user.role = res.data.role || "user";
                 setUser(user)

@@ -23,7 +23,7 @@ const AddAdmin = () => {
     const { token } = useAuth();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users')
+        axios.get('https://fathomless-lake-90403.herokuapp.com/users')
             .then(response => {
                 setUsers(response.data)
             })
@@ -31,7 +31,7 @@ const AddAdmin = () => {
 
     const addNewAdmin = (e) => {
         const email = e.target.email.value;
-        axios.put(`http://localhost:5000/users/${email}`, {
+        axios.put(`https://fathomless-lake-90403.herokuapp.com/users/${email}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

@@ -43,7 +43,7 @@ const BookAppointment = ({ open, setOpen, handleClose, appointment, date }) => {
 
     const handleBooking = (e) => {
         setLoading(true);
-        axios.post('http://localhost:5000/bookings', {
+        axios.post('https://fathomless-lake-90403.herokuapp.com/bookings', {
             data: data
         }).then(response => {
             if (response.data) {

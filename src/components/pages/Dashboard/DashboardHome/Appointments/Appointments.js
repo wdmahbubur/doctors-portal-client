@@ -16,7 +16,7 @@ const Appointments = ({ date, setLoading }) => {
     const [appointments, setAppointments] = useState([]);
     useEffect(() => {
         setLoading(true);
-        axios.get(`http://localhost:5000/bookings/?userId=${user.uid}&date=${date.toLocaleDateString()}`)
+        axios.get(`https://fathomless-lake-90403.herokuapp.com/bookings/?userId=${user.uid}&date=${date.toLocaleDateString()}`)
             .then(response => {
                 setAppointments(response.data);
             })
