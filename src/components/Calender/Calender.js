@@ -6,7 +6,6 @@ import StaticDatePicker from '@mui/lab/StaticDatePicker';
 import './Calender.css';
 
 const Calender = ({ date, setDate }) => {
-
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDatePicker

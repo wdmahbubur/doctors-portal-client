@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import useAuth from '../../../../hooks/useAuth';
+import useAuth from '../../../../../hooks/useAuth';
 
 
 const Appointments = ({ date, setLoading }) => {
@@ -16,7 +16,7 @@ const Appointments = ({ date, setLoading }) => {
     const [appointments, setAppointments] = useState([]);
     useEffect(() => {
         setLoading(true);
-        axios.get(`http://localhost:5000/bookings/?email=${user.email}&date=${date.toLocaleDateString()}`)
+        axios.get(`http://localhost:5000/bookings/?userId=${user.uid}&date=${date.toLocaleDateString()}`)
             .then(response => {
                 setAppointments(response.data);
             })
@@ -40,6 +40,7 @@ const Appointments = ({ date, setLoading }) => {
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell>Schedule</TableCell>
+                            <TableCell>Service</TableCell>
                             <TableCell>Action</TableCell>
                         </TableRow>
                     </TableHead>
@@ -53,6 +54,7 @@ const Appointments = ({ date, setLoading }) => {
                                 <TableCell>{row.name}</TableCell>
                                 <TableCell >{row.time}</TableCell>
                                 <TableCell >{row.title}</TableCell>
+                                <TableCell></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

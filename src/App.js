@@ -7,6 +7,10 @@ import Register from './components/pages/Register/Register';
 import Context from './context/context';
 import RequireAuth from './components/PrivateRoute/PrivateRoute';
 import Dashboard from './components/pages/Dashboard/Dashboard';
+import AddDoctor from './components/pages/Dashboard/AddDoctor/AddDoctor';
+import AddAdmin from './components/pages/Dashboard/AddAdmin/AddAdmin';
+import DashboardHome from './components/pages/Dashboard/DashboardHome/DashboardHome';
+import AdminRoute from './components/AdminRoute/AdminRoute';
 
 
 function App() {
@@ -25,7 +29,19 @@ function App() {
               <RequireAuth>
                 <Dashboard />
               </RequireAuth>
-            } />
+            }>
+              <Route index element={<DashboardHome />} />
+              <Route path="add-doctor" element={
+                <AdminRoute>
+                  <AddDoctor />
+                </AdminRoute>
+              } />
+              <Route path="add-admin" element={
+                <AdminRoute>
+                  <AddAdmin />
+                </AdminRoute>
+              } />
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>

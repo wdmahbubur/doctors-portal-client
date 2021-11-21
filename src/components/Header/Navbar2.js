@@ -6,12 +6,12 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Avatar, Divider, Link, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import useAuth from '../../hooks/useAuth';
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
 const Navbar2 = ({ top }) => {
     const { user, logout } = useAuth();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,6 +22,12 @@ const Navbar2 = ({ top }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    let navigate = useNavigate()
+
+    const dashboard = () => {
+        navigate('/dashboard')
+    }
     return (
         <Box sx={{ flexGrow: 1, position: 'fixed', width: '100%', zIndex: 1023, marginTop: top || '0', transition: 'all .5s linear' }}>
             <AppBar position="static">
@@ -127,8 +133,8 @@ const Navbar2 = ({ top }) => {
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                     >
-                        <MenuItem>
-                            <Avatar /> Profile
+                        <MenuItem onClick={dashboard}>
+                            <DashboardIcon sx={{ width: '32px', height: '32px', ml: '-4px', mr: '8px', color: "text.secondary" }} /> Dashboard
                         </MenuItem>
                         <MenuItem>
                             <Avatar /> My account

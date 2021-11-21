@@ -15,7 +15,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const url = location.state?.from?.pathname || "/";
+    const url = location.state?.from?.pathname || "/dashboard";
     useEffect(() => {
         if (user?.email) {
             navigate(url, { replace: true })

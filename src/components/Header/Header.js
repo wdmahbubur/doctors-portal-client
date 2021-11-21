@@ -19,7 +19,8 @@ const Header = () => {
     }
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
+
     }, [])
     return (
         <div>

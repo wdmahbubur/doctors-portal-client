@@ -6,29 +6,29 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import Calender from '../../Calender/Calender';
-import Appointments from './Appointments/Appointments';
-import Loading from '../../Loading/Loading';
 
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import PersonIcon from '@mui/icons-material/Person';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Outlet, NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
-    const [date, setDate] = useState(new Date());
 
+    const { user, logout } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -38,25 +38,47 @@ function Dashboard(props) {
             <Toolbar />
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
+                <ListItem button as={NavLink} to="/dashboard/">
+                    <ListItemIcon>
+                        <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Dashboard"} />
+                </ListItem>
+
+                <ListItem button as={NavLink} to="/appointment">
+                    <ListItemIcon>
+                        <MedicalServicesIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Get Appointment"} />
+                </ListItem>
+                {
+                    user.role === "Admin" && <ListItem button as={NavLink} to="/dashboard/add-doctor">
                         <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            <PersonIcon />
                         </ListItemIcon>
-                        <ListItemText primary={text} />
+                        <ListItemText primary={"Add Doctor"} />
                     </ListItem>
-                ))}
+                }
+
+
             </List>
             <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
+                {
+                    user.role === "Admin" &&
+                    <ListItem button as={NavLink} to="/dashboard/add-admin">
                         <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            <SupervisedUserCircleIcon />
                         </ListItemIcon>
-                        <ListItemText primary={text} />
+                        <ListItemText primary={"Add Admin"} />
                     </ListItem>
-                ))}
+                }
+                <ListItem button sx={{ color: 'error.main' }} onClick={logout}>
+                    <ListItemIcon>
+                        <LogoutIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Logout"} />
+                </ListItem>
             </List>
         </div>
     );
@@ -65,9 +87,7 @@ function Dashboard(props) {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            {
-                loading && <Loading />
-            }
+
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -87,7 +107,7 @@ function Dashboard(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        Responsive drawer
+                        Dashboard
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -128,16 +148,7 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Grid container spacing={2}>
-                    <Grid item md={4}>
-                        <Box sx={{ width: 1, boxShadow: 2, borderRadius: 2 }}>
-                            <Calender date={date} setDate={setDate}></Calender>
-                        </Box>
-                    </Grid>
-                    <Grid item md={8}>
-                        <Appointments date={date} setLoading={setLoading} loading={loading}></Appointments>
-                    </Grid>
-                </Grid>
+                <Outlet />
             </Box>
         </Box>
     );

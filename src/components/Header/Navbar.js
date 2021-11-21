@@ -12,8 +12,10 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Container, Link } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+
 const Navbar = () => {
     const { user, logout } = useAuth();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -24,6 +26,12 @@ const Navbar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    let navigate = useNavigate()
+
+    const dashboard = () => {
+        navigate('/dashboard')
+    }
     return (
         <React.Fragment>
             <Container sx={{ position: 'relative' }}>
@@ -120,8 +128,8 @@ const Navbar = () => {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem>
-                                <Avatar /> Profile
+                            <MenuItem onClick={dashboard}>
+                                <DashboardIcon sx={{ width: '32px', height: '32px', ml: '-4px', mr: '8px', color: "text.secondary" }} /> Dashboard
                             </MenuItem>
                             <MenuItem>
                                 <Avatar /> My account
